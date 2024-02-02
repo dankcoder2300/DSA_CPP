@@ -53,7 +53,7 @@ void createCycle(Node* &head,int pos) {
 //     }
 
 // Method 2: Using tortoise and hare appraoch (optimal approach)
-Node* detectCycle(Node *head)
+int LoopLength(Node *head)
 {
     Node* slow=head;
     Node* fast=head;
@@ -64,16 +64,17 @@ Node* detectCycle(Node *head)
         fast=fast->next->next;
 
         if(slow==fast){
-            slow=head;
-            while(slow!=fast)
-            {
+            int cnt=0;
+            slow=slow->next;
+            cnt++;
+            while(slow!=fast){
                 slow=slow->next;
-                fast=fast->next;
+                cnt++;
             }
-            return slow;
+            return cnt;
         }
     }
-    return NULL;
+    return 0;
 }
 
 int main() 
@@ -90,7 +91,7 @@ int main()
     fourth->next = fifth;
 
     //creating cycle
-    createCycle(head,1);
+    createCycle(head,2);
     
     int ans=LoopLength(head);
     if(ans==0)
