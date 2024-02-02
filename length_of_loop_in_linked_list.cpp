@@ -32,48 +32,49 @@ void createCycle(Node* &head,int pos) {
     temp->next = ptr;
 }
 
-int LoopLength(Node *head) {
-    unordered_map<Node*,int> mp;
-    Node* temp=head;
-    int timer=0;
-        while(temp!=NULL)
-         {
-            if(mp.find(temp)!=mp.end())
-            {
-                int value=mp[temp];
-                return {timer-value};
-            }
+// Method 1: using Unordered map appraoch
+// int LoopLength(Node *head) {
+//     unordered_map<Node*,int> mp;
+//     Node* temp=head;
+//     int timer=0;
+//         while(temp!=NULL)
+//          {
+//             if(mp.find(temp)!=mp.end())
+//             {
+//                 int value=mp[temp];
+//                 return {timer-value};
+//             }
 
-            mp[temp]=timer;
-            timer++;
-            temp=temp->next;
-         }
-         return 0;
-    }
+//             mp[temp]=timer;
+//             timer++;
+//             temp=temp->next;
+//          }
+//          return 0;
+//     }
 
 // Method 2: Using tortoise and hare appraoch (optimal approach)
-// Node* detectCycle(Node *head)
-// {
-//     Node* slow=head;
-//     Node* fast=head;
+Node* detectCycle(Node *head)
+{
+    Node* slow=head;
+    Node* fast=head;
 
-//     while(fast!=NULL && fast->next!=NULL)
-//     {
-//         slow=slow->next;
-//         fast=fast->next->next;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
 
-//         if(slow==fast){
-//             slow=head;
-//             while(slow!=fast)
-//             {
-//                 slow=slow->next;
-//                 fast=fast->next;
-//             }
-//             return slow;
-//         }
-//     }
-//     return NULL;
-// }
+        if(slow==fast){
+            slow=head;
+            while(slow!=fast)
+            {
+                slow=slow->next;
+                fast=fast->next;
+            }
+            return slow;
+        }
+    }
+    return NULL;
+}
 
 int main() 
 {
