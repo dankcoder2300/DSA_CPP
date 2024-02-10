@@ -1,3 +1,2 @@
-head= deleteAtbeginning(head);
-//   cout << "LinkedList after deleting 0 at beginning : " << endl;
-//   printLL(head);
+Node* head=mergeLL(head1,head2);
+    // printLL(head);
