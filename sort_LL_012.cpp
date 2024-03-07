@@ -51,28 +51,28 @@ void printLL(Node* head){
 }
 
 // Method 1: Brute Force Approach
-Node* sortLL012(Node* head)
-{
-    vector<int> arr;
-    Node* temp=head;
+// Node* sortLL012(Node* head)
+// {
+//     vector<int> arr;
+//     Node* temp=head;
 
-    while(temp!=NULL)
-    {
-        arr.push_back(temp->data);
-        temp=temp->next;
-    }
-    sort(arr.begin(),arr.end());
+//     while(temp!=NULL)
+//     {
+//         arr.push_back(temp->data);
+//         temp=temp->next;
+//     }
+//     sort(arr.begin(),arr.end());
 
-    temp=head;
-    int i=0;
-    while(i<arr.size())
-    {
-        temp->data=arr[i];
-        temp=temp->next;
-        i++;
-    }
-    return head;
-}
+//     temp=head;
+//     int i=0;
+//     while(i<arr.size())
+//     {
+//         temp->data=arr[i];
+//         temp=temp->next;
+//         i++;
+//     }
+//     return head;
+// }
 
 // Method 2: using cnt0,cnt1 and cnt2;
 // Node* sortLL012(Node* head)
@@ -121,47 +121,47 @@ Node* sortLL012(Node* head)
 // }
 
 // Method 3: Optimised Solution
-// Node* sortLL012(Node* head)
-// {
-//     Node* zeroHead=new Node(-1);
-//     Node* oneHead=new Node(-1);
-//     Node* twoHead=new Node(-1);
-//     Node* zero=zeroHead;
-//     Node* one=oneHead;
-//     Node* two=twoHead;
+Node* sortLL012(Node* head)
+{
+    Node* zeroHead=new Node(-1);
+    Node* oneHead=new Node(-1);
+    Node* twoHead=new Node(-1);
+    Node* zero=zeroHead;
+    Node* one=oneHead;
+    Node* two=twoHead;
 
-//     Node* temp=head;
-//     while(temp!=NULL)
-//     {
-//         if(temp->data==0)
-//         {
-//             zero->next=temp;
-//             zero=zero=zero->next;
-//         }
-//         else if(temp->data==1)
-//         {
-//             one->next=temp;
-//             one=one->next;
-//         }
-//         else
-//         {
-//             two->next=temp;
-//             two=two->next;
-//         }
-//         temp=temp->next;
-//     }
+    Node* temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->data==0)
+        {
+            zero->next=temp;
+            zero=zero=zero->next;
+        }
+        else if(temp->data==1)
+        {
+            one->next=temp;
+            one=one->next;
+        }
+        else
+        {
+            two->next=temp;
+            two=two->next;
+        }
+        temp=temp->next;
+    }
 
-//     zero->next=(oneHead->next)?oneHead->next:twoHead->next;
-//     one->next=twoHead->next;
-//     two->next=NULL;
+    zero->next=(oneHead->next)?oneHead->next:twoHead->next;
+    one->next=twoHead->next;
+    two->next=NULL;
 
-//     Node* newHead=zeroHead->next;
-//     delete(zeroHead);
-//     delete(oneHead);
-//     delete(twoHead);
+    Node* newHead=zeroHead->next;
+    delete(zeroHead);
+    delete(oneHead);
+    delete(twoHead);
     
-//     return newHead;
-// }
+    return newHead;
+}
 
 int main()
 {
